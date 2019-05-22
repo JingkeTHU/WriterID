@@ -12,13 +12,19 @@ DataPreprocessing.py
     - Validation_RHS_Sample (list) :随机从Validation dataset中采样的RHS数据
     - Validation_RHS_Label_Sample (list) :每一个元素为上述sample对应的学号
     
-代码运行的建议键盘输入为：
-Data/Data10
+代码运行过程中所需的键盘输入为：
+/Users/photon/Desktop/Patern_recognition/WriterID/Data10
 yes
 yes
 分别：
-用来确认生成10个样本集还是107样本集的RHS数据
+需要依据Data/Data10所在的具体路径做对应修改
 用来绘图确认数据读入正常
 用来绘图确认RHS数据生成正常
 
-代码的输出会有
+最终生成的RHS数据将会以字典形式SampleRHS保存为SampleRHS.txt文件，训练时通过以下代码读入内存即可。
+
+f = open('SampleRHS.txt','r')
+a = f.read()
+SampleRHS = eval(a)
+f.close()
+
