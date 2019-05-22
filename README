@@ -1,0 +1,22 @@
+DataPreprocessing.py
+  RHS_Data (dict)： 
+    - Train_RHS (list):根据Train_Point计算所得的RHS
+    - Train_RHS_Label (list):对应于Train_RHS的Label
+    - Train_Point (list):其中每一个列表为Train数据中一个学生十个字所组成一页的坐标
+    - Validation_RHS (list):根据Validation_Point计算所得的RHS
+    - Validation_RHS_Label (list):对应于Validation_RHS的Label
+    - Validation_Point (list): 其中每一个列表为Validation数据中一个学生十个字所组成一页中点的坐标
+  SampleRHS (dict):
+    - Train_RHS_Sample (list): 随机从Training dataset中采样的RHS数据
+    - Train_RHS_Label_Sample (list) :每一个元素为上述sample对应的学号
+    - Validation_RHS_Sample (list) :随机从Validation dataset中采样的RHS数据
+    - Validation_RHS_Label_Sample (list) :每一个元素为上述sample对应的学号
+    
+代码运行的建议键盘输入为：
+Data/Data10
+yes
+yes
+分别：
+用来确认生成10个样本集还是107样本集的RHS数据
+用来绘图确认数据读入正常
+用来绘图确认RHS数据生成正常
