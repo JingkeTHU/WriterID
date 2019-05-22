@@ -14,15 +14,15 @@ def GeneratePath(path='Data10/*/*.npy'):
     files = glob.glob(path)
     Train_Path, Train_Label, Validation_Path, Validation_Label = [], [], [], []
     for num in range(len(files)):
-        if files[num].split('/')[1] == 'Validation_with_labels' or files[num].split('/')[1] == 'Validation Characters10':
+        if files[num].split('/')[-2] == 'Validation_with_labels' or files[num].split('/')[-2] == 'Validation Characters10':
             continue
         else:
-            if files[num].split('/')[1] == 'Train':
+            if files[num].split('/')[-2] == 'Train':
                 Train_Path.append(files[num])
-                Train_Label.append(files[num].split('/')[2].split('.')[0])
-            if files[num].split('/')[1] == 'Validation':
+                Train_Label.append(files[num].split('/')[-1].split('.')[0])
+            if files[num].split('/')[-2] == 'Validation':
                 Validation_Path.append(files[num])
-                Validation_Label.append(files[num].split('/')[2].split('.')[0])
+                Validation_Label.append(files[num].split('/')[-1].split('.')[0])
     Dataset = dict(Train_Path=Train_Path, Train_Label=Train_Label,
                    Validation_Path=Validation_Path, Validation_Label=Validation_Label)
     # print(Dataset)
@@ -149,11 +149,10 @@ def RandomSampleRHS(RHS_Data, LenofSample, NumofSample):
     return SampleRHS
 
 
-Directory = input("Please choose directory to perform data preprocessing: (Data/Data10)?")
+Directory = input("Please enter directory as form of follows: '/Users/photon/Desktop/Patern_recognition/WriterID/Data10'")
 TestDataLoadIn = input("Test whether Data was loaded rightly: yes/no")
 TestRHS = input("Test whether RHS was generated rightly: yes/no")
 Directory = Directory + '/*/*.npy'
-path = '/Users/photon/Desktop/Patern_recognition/WriterID/Data10/Validation_with_labels/000.npy'
 Dataset = GeneratePath(Directory)
 RHS_Data = CreateRHS(Dataset)
 if TestDataLoadIn == 'yes':
@@ -162,3 +161,13 @@ if TestDataLoadIn == 'yes':
 SampleRHS = RandomSampleRHS(RHS_Data, 100, 100)
 if TestRHS == 'yes':
     ShowRHS(SampleRHS)
+
+
+f = open('SampleRHS.txt','w')
+f.write(str(SampleRHS))
+f.close()
+
+# f = open('SampleRHS.txt','r')
+# a = f.read()
+# SampleRHS = eval(a)
+# f.close()
