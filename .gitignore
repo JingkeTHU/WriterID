@@ -128,7 +128,7 @@ dmypy.json
 .pyre/
 
 # Customer file
-*.zip
+
 *.mat
 *.raw
 *.mhd
