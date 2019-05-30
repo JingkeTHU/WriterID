@@ -23,8 +23,30 @@ yes
 
 最终生成的RHS数据将会以字典形式SampleRHS保存为SampleRHS.txt文件，训练时通过以下代码读入内存即可。
 
-f = open('SampleRHS.txt','r')
-a = f.read()
-SampleRHS = eval(a)
-f.close()
+需要修改的参数：
+    f = open('SampleRHS.txt','r') 中的文件名和路径
+    NumOfSample的值，后面训练和测试的NumOfSample参数均需要跟随这里修改
+
+
+
+
+
+
+BiLSTM.py
+    将该文件和SampleRHS.txt及SampleRHS.txt放在一个目录下，代码运行完成后会在相同目录下生成一个Model_LSTM.pth文件保存模型参数。
+    需要修改的参数有： 
+	SampleRHS = LoadinRHS('SampleRHS_107.txt')中的RHS文件路径
+	NumofSamples = 300 每个学生的采样sample数
+    其中需要注意的是LoadinRHS函数所使用的加载RHS数据的方法中对于txt文件的大小有着限制，经测试当txt文件大小达到500MB时，出现长时间无法成功加载的现象，因此在DataPreprocessing的采样中，对于107分类的情况每个学生仅采样300个sample，对于10分类暂无采样数量的要求。 未来也可以换为其他格式数据进行保存和加载，例如.npy或.mat等。
+    函数的功能和结构见注释
+
+
+    验证集上经过投票可以对10分类或107分类中的每位学生均实现100%分类准确率
+
+
+下一步工作：
+加载BiLSTM.py输出的模型参数，进行分类判断
+Model = torch.load('Model_LSTM.pth')
+LSTM.load_state_dict(Model)
+
 

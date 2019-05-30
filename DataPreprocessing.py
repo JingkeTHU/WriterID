@@ -2,6 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import glob
 
+# parameters setting
+NumOfSample = 300
+
 def LoadFile(path):
     # Input: path of .npy file to load
     # Output: numpy array load from .npy file
@@ -149,7 +152,7 @@ def RandomSampleRHS(RHS_Data, LenofSample, NumofSample):
     return SampleRHS
 
 
-Directory = input("Please enter directory as form of follows: '/Users/photon/Desktop/Patern_recognition/WriterID/Data10'")
+Directory = input("Please enter directory as form of follows: '/Users/photon/Desktop/Patern_recognition/WriterID/Data'")
 TestDataLoadIn = input("Test whether Data was loaded rightly: yes/no")
 TestRHS = input("Test whether RHS was generated rightly: yes/no")
 Directory = Directory + '/*/*.npy'
@@ -158,12 +161,12 @@ RHS_Data = CreateRHS(Dataset)
 if TestDataLoadIn == 'yes':
     ShowPoint(RHS_Data)
 # According to the observation, there normally exist nearly 12000 points in each page
-SampleRHS = RandomSampleRHS(RHS_Data, 100, 100)
+SampleRHS = RandomSampleRHS(RHS_Data, 100, NumOfSample)
 if TestRHS == 'yes':
     ShowRHS(SampleRHS)
 
 
-f = open('SampleRHS.txt','w')
+f = open('SampleRHS_107.txt', 'w')
 f.write(str(SampleRHS))
 f.close()
 
