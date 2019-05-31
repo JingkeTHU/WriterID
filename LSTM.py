@@ -14,9 +14,9 @@ BATCH_SIZE = 500
 EPOCH = 200
 use_gpu = torch.cuda.is_available()
 # 需要分类的种类数  10/107
-NumOfCategory = 107
+NumOfCategory = 10
 # 每个学生采样的sample数
-NumofSamples = 300
+NumofSamples = 100
 
 # 定义了一个单向LSTM网络，隐藏层为100个节点，通过线性分类器分为10类
 class LSTM(nn.Module):
@@ -182,7 +182,7 @@ def Train(model, criterion, optimizer, scheduler, num_epochs, Validation_Label_L
 # Define Input data：  (batch_size, seq_len, dims)
 print('Loading. Please wait... It may take 2-3 minutes')
 since = time.time()
-SampleRHS = LoadinRHS('SampleRHS_107.txt')
+SampleRHS = LoadinRHS('SampleRHS.txt')
 time_elapsed = time.time() - since
 print('Loadin RHS: ' + str(time_elapsed) + 's')
 
@@ -193,7 +193,7 @@ time_elapsed = time.time() - since
 print('Extract list: ' + str(time_elapsed) + 's')
 
 since = time.time()
-Train_Label_List = convertLabel2Num(Train_RHS_Label_Sample)
+Train_Label_List, Label_dict = convertLabel2Num(Train_RHS_Label_Sample)
 time_elapsed = time.time() - since
 print('Convert 2 list: ' + str(time_elapsed) + 's')
 
@@ -211,7 +211,7 @@ Train_loader = Data.DataLoader(
 # Design Test Data Loader
 Validation_RHS_Sample = np.array(SampleRHS['Validation_RHS_Sample'])
 Validation_RHS_Label_Sample = SampleRHS['Validation_RHS_Label_Sample']
-Validation_Label_List = convertLabel2Num(Validation_RHS_Label_Sample)
+Validation_Label_List, Label_dict = convertLabel2Num(Validation_RHS_Label_Sample)
 Validation_Label = np.transpose(np.array(Validation_Label_List))
 # 把数据放在数据集中并以DataLoader送入网络训练
 Validation_dataset = Data.TensorDataset(torch.from_numpy(Validation_RHS_Sample), torch.from_numpy(Validation_Label))
