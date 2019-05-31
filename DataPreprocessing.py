@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import glob
 
 # parameters setting
-NumOfSample = 300
+NumOfSample = 100
 
 def LoadFile(path):
     # Input: path of .npy file to load
@@ -105,7 +105,7 @@ def ShowPoint(RHS_Data):
     plt.figure()
     plt.ion()
     plt.scatter([Page[i][0] for i in range(len(Page))], [Page[i][1] for i in range(len(Page))], marker='o',color='r',s=1)
-    plt.pause(3)
+    plt.pause(100)
     plt.close()
 
 
@@ -123,7 +123,7 @@ def ShowRHS(SampleRHS):
     plt.figure()
     plt.ion()
     plt.scatter(Scatter_x, Scatter_y, marker='o', color='r', s=1)
-    plt.pause(3)
+    plt.pause(100)
     plt.close()
 
 
@@ -157,6 +157,7 @@ TestDataLoadIn = input("Test whether Data was loaded rightly: yes/no")
 TestRHS = input("Test whether RHS was generated rightly: yes/no")
 Directory = Directory + '/*/*.npy'
 Dataset = GeneratePath(Directory)
+print(Dataset)
 RHS_Data = CreateRHS(Dataset)
 if TestDataLoadIn == 'yes':
     ShowPoint(RHS_Data)
@@ -166,7 +167,7 @@ if TestRHS == 'yes':
     ShowRHS(SampleRHS)
 
 
-f = open('SampleRHS_107.txt', 'w')
+f = open('SampleRHS.txt', 'w')
 f.write(str(SampleRHS))
 f.close()
 
