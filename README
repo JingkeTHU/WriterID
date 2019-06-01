@@ -1,3 +1,7 @@
+Spring 2019 - Tsinghua University - Pattern recognition
+Jingke Zhang
+zjk17@mails.tsinghua.edu.cn
+
 DataPreprocessing.py
   RHS_Data (dict)： 
     - Train_RHS (list):根据Train_Point计算所得的RHS
